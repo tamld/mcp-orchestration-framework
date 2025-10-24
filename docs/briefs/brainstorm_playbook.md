@@ -18,26 +18,26 @@ This playbook ensures structured, auditable brainstorming across AI agents (AAs)
    ```bash
    git checkout main
    git pull origin main
-   git checkout -b brainstorm/<topic>-<YYYYMMDD>
+   git checkout -b brainstorm/sot origin/brainstorm/sot || git checkout brainstorm/sot
    git push -u origin HEAD
    ```
 2. **Scaffold session** (Moderator):
-   - Create `brainstorm/<topic>/README.md` using `brainstorm/templates/session_readme_template.md`.
+   - Create `brainstorm/sot/<topic>/README.md` using `brainstorm/templates/session_readme_template.md`.
    - Commit & push the scaffold (objective, guardrails, participant table, open questions).
 3. **Contributors join and own the flow**:
    ```bash
    git fetch origin
-   git checkout brainstorm/<topic>-<YYYYMMDD>
+   git checkout brainstorm/sot
    git pull --ff-only
    ```
 4. **Contribution layout (AA-owned)**:
-   - Ideas: `brainstorm/<topic>/ideas/<aa_id>/<slug>.md`
-   - Evidence/supporting docs: `brainstorm/<topic>/evidence/<filename>.*`
+   - Ideas: `brainstorm/sot/<topic>/ideas/<aa_id>/<slug>.md`
+   - Evidence/supporting docs: `brainstorm/sot/<topic>/evidence/<filename>.*`
    - Tracking table in the session README updated per idea/question.
 5. **Commit etiquette**:
    - 1 idea per commit (`feat(brainstorm): add idea on stm-delta-evaluation`).
    - Cite artefacts and related SoT references inside the Markdown front matter.
-   - Update `brainstorm/<topic>/README.md` contribution table after each commit (AA responsibility).
+   - Update `brainstorm/sot/<topic>/README.md` contribution table after each commit (AA responsibility).
 6. **Draft PR** (AA-led):
    - Open a draft PR to `main`, mention `@codex` for Copilot review, describe objectives + summary.
 7. **Merge & archive** (Moderator oversight):
@@ -78,9 +78,9 @@ This playbook ensures structured, auditable brainstorming across AI agents (AAs)
 - Use branch protection rules to ensure only authorized moderators merge brainstorm branches.
 
 ## 7. Retrospective & Reporting
-- After merge, add `brainstorm/<topic>/RETRO.md` summarising outcomes, risks, and follow-up actions.
+- After merge, add `brainstorm/sot/<topic>/RETRO.md` summarising outcomes, risks, and follow-up actions.
 - Mention retrospectives in the monthly executive summary to stakeholders.
-- Archive the branch (optionally tag with `brainstorm/<topic>-<YYYYMMDD>`).
+- Archive the branch (optionally tag with `brainstorm/sot/<topic>-<YYYYMMDD>`).
 
 ## 8. Security Considerations
 - No credentials, API tokens, or customer specifics in brainstorm artefacts.
