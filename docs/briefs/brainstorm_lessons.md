@@ -1,31 +1,62 @@
-# Brainstorm Workflow – Assumptions & Continuous Improvement
+# Brainstorm Workflow – Assumptions, File Types & Lessons
 
-## Session Kick-off Assumptions
+## Preferred File Types for Brainstorm
+| File Type | Usage | Why it works |
+| --- | --- | --- |
+| Markdown (`.md`) | Session README, individual ideas, retrospective | Human-readable, version-friendly, supports tables/front matter, Git diff friendly. |
+| YAML (`.yaml`) | Optional metadata snapshots or config overrides | Machine-readable structure; easy for AAs to parse while remaining simple to edit. |
+| JSONL (`.jsonl`) | Evidence logs, automated outputs (if needed) | Streams data-friendly for downstream tooling, consistent with existing log format. |
+| SVG/PNG (sanitised) | Visual summaries if required | Only after review; kept minimal to avoid leaking details. |
+| Plain text (`.txt`) | Rapid scratchpad (optional) | Temporary, later converted to Markdown for permanence. |
+
+**Why Markdown as primary**: allows narrative, tables, and code snippets, integrates well with Git history, simplifies review and merge. YAML/JSONL serve as structured companions when automation or SoT integration is needed.
+
+## Updated Assumptions
 | ID | Assumption | Rationale | Validation Plan |
 | --- | --- | --- | --- |
-| A1 | Gemini will collaborate via dedicated branch `brainstorm/gemini-collab-20251024`. | Keeps all artefacts traceable and isolated. | Moderator creates branch, Gemini confirms checkout & push access. |
-| A2 | All AA contributors can run sanitize + pytest locally. | Maintains existing auto-merge contract. | Require checklist confirmation before first commit. |
-| A3 | Session README template captures goals/guardrails sufficiently. | Ensures alignment without manual back-and-forth. | Gemini fills template and moderator reviews within first commit. |
+| A1 | Branch `brainstorm/gemini-collab-20251024` holds session artefacts. | Keeps brainstorm isolated and auditable. | Moderator creates branch, Gemini confirms checkout. |
+| A2 | Ideas recorded as Markdown files with front matter. | Ensures consistent metadata + human readability. | First AA commit uses template, moderator spot-checks. |
+| A3 | Optional YAML snapshot captures agreed decisions. | Allows automated ingestion later. | Create `brainstorm/.../decisions.yaml` after session wrap-up. |
+| A4 | Evidence logs (if generated) stored as JSONL under `samples/` or session `evidence/`. | Aligns with existing log practices, easy automation. | Only add sanitized entries; moderator verifies before merge. |
 
 ## Potential Challenges & Mitigations
 | Challenge | Impact | Mitigation |
 | --- | --- | --- |
-| Desync between agents due to frequent updates | Merge conflicts, lost context | Encourage short commit cycles, session README contribution table updated after each idea. |
-| Sensitive insight accidentally added | Compliance risk | Enforce sanitize run pre-push; moderator scans diff, retrospective documents incident if happens. |
-| Lack of conflict resolution clarity | Delayed decisions | Use PR decision table; flag moderator only when AA discussions remain unresolved after two iterations. |
+| Markdown conflicts when multiple AAs edit same README table | Slows iteration | Use short update windows, append rows carefully, consider splitting tables into per-AA files if conflicts persist. |
+| YAML/JSON syntax errors | Breaks tooling | Run lint or quick validation (`python -c 'import yaml,...'`) before commit. |
+| Sensitive content slipping into artefacts | Compliance risk | Sanitize script + moderator review + retrospective log when incident occurs. |
 
-## Self-Lessons (Codex)
-1. **Delegate content creation to AA peers** – resist adding ideas directly; focus on facilitating question clarity and evidence requirements.
-2. **Make assumptions explicit upfront** – document branch naming, validation steps before session to avoid friction.
-3. **Log every intervention** – when moderator input is needed, leave trace in session README + commit message for auditability.
-4. **Schedule async checkpoints** – set explicit timestamps in README for AA updates to keep cadence steady.
+## Workflow Conventions Added
+- Each session README now includes **Moderator Notes** section (for oversight comments without changing AA content).
+- PR description template includes:
+  ```markdown
+  ## Checklist
+  - [ ] sanitize run
+  - [ ] pytest (if applicable)
+  - [ ] decision table updated
+  - [ ] retrospective drafted
+  ## Decisions
+  | Idea | Status | Notes |
+  | --- | --- | --- |
+  ```
+- After merge, create `brainstorm/<topic>/decisions.yaml` summarising key accepted items.
+- Use issue label `brainstorm-question` to track prompts outside the branch.
 
-## Workflow Tweaks for Upcoming Sessions
-- Add "Moderator Notes" section in session README template for oversight comments without editing AA content.
-- Introduce optional label `brainstorm-question` in GitHub issues to collect extra prompts without modifying branch history.
-- Prepare checklist snippet AA can paste into PR description (sanity/pytest/sanitize, decision table, outstanding risks).
+## Lessons Learned
+### Successes
+| Lesson | Artefact |
+| --- | --- |
+| L1: Markdown front matter keeps metadata consistent across agents. | `brainstorm/templates/session_readme_template.md`, idea files referencing template |
+| L2: Branch isolation + README tables make audit trail clear for moderators. | Sample branch instructions in `docs/briefs/brainstorm_playbook.md` |
+
+### Failures / Opportunities
+| Lesson | Artefact |
+| --- | --- |
+| F1: Early sessions had mingled human/AA content, causing unclear ownership. Resolved by revising playbook to emphasise AA-led writing. | Git history prior to commit `88205fd` (docs: emphasise AA ownership...) |
+| F2: Lacked assumptions/goals upfront; added `docs/briefs/brainstorm_lessons.md` to document hypotheses and mitigations. | Current file + README evidence bundle entry |
 
 ## Next Actions
-1. Moderator to open branch `brainstorm/gemini-collab-20251024` and push scaffold using updated template.
-2. Gemini to acknowledge assumptions A1–A3 in first commit and populate session README contribution table.
-3. Codex to monitor PR comments and only intervene when conflicts flagged, documenting intervention per Lesson #3.
+1. Create branch `brainstorm/gemini-collab-20251024` with README scaffold using Markdown template.
+2. Define decisions.yaml structure (YAML) for post-session summary.
+3. Encourage AAs to log evidence or automation outputs using JSONL when available.
+4. Review retro output and integrate into monthly executive summary.
