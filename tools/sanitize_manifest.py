@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Sanitize scanner dành cho repo PoC.
-Kiểm tra email, token, đường dẫn nội bộ trước khi publish public.
+Sanitize scanner for the PoC repository.
+Checks for emails, tokens, or local paths before publishing.
 """
 
 from __future__ import annotations
@@ -45,12 +45,12 @@ def scan(path: Path) -> list[tuple[str, str]]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Sanitize checker for MCP PoC repo.")
-    parser.add_argument("--root", default=".", help="Thư mục gốc cần quét.")
+    parser.add_argument("--root", default=".", help="Root directory to scan.")
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
     if not root.exists():
-        print(f"[sanitize] Không tìm thấy thư mục: {root}", file=sys.stderr)
+        print(f"[sanitize] Directory not found: {root}", file=sys.stderr)
         return 1
 
     findings: list[tuple[Path, str, str]] = []
@@ -59,14 +59,14 @@ def main() -> int:
             findings.append((file_path.relative_to(root), rule, snippet))
 
     if not findings:
-        print("✅ Không phát hiện chuỗi nhạy cảm.")
+        print("✅ No sensitive strings detected.")
         return 0
 
-    print("⚠️ Phát hiện chuỗi nghi nhạy cảm:")
+    print("⚠️ Potential sensitive strings detected:")
     for rel_path, rule, snippet in findings:
         preview = (snippet[:40] + "...") if len(snippet) > 40 else snippet
         print(f" - {rel_path}: {rule} -> \"{preview}\"")
-    print("Vui lòng thay bằng placeholder hoặc xóa khỏi PoC trước khi public.")
+    print("Replace with a placeholder or remove before publishing the PoC.")
     return 2
 
 

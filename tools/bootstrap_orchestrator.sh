@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# PoC Bootstrap script — không ghi anchors thật.
+# PoC Bootstrap script — does not write real anchors.
 
 usage() {
   cat <<'EOF'
@@ -30,10 +30,10 @@ echo "LAW CHECK  : LAW-REFLECT-001 enforced"
 
 if [[ "${mode}" == "detail" ]]; then
   cat <<'EOF'
-Tài liệu nên đọc:
+Suggested reading:
 - README.md
 - docs/design/overview.md
 - docs/briefs/sanitize_checklist.md
-- MCP-Server/memory/templates/file_specifications.md (tham chiếu)
+- MCP-Server/memory/templates/file_specifications.md (reference)
 EOF
 fi
