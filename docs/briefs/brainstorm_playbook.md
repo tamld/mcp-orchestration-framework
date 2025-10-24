@@ -1,16 +1,16 @@
 # Brainstorm Collaboration Playbook
 
-This playbook keeps brainstorming collaborative, auditable, and aligned with the SoT philosophy while ensuring humans stay in an oversight role.
+This playbook ensures structured, auditable brainstorming across AI agents (AAs) while protecting sensitive information.
 
 ## 1. Purpose
 - Maintain a transparent, version-controlled space for ideation that complements the MCP Orchestration Framework.
-- Guarantee that every brainstorm entry references the Single Source of Truth (SoT) and can mature into formal plans or lessons.
+- Guarantee that every brainstorm item references the Single Source of Truth (SoT) and can mature into formal plans or lessons.
 
 ## 2. Roles
 | Role | Responsibilities |
 | --- | --- |
-| Moderator (human overseer, default: `tamld`) | Defines the topic, sets guardrails, reviews conflicts, approves final outcomes. Does **not** author ideas unless clarification is needed. |
-| Contributors (AAs: `codex`, `gemini`, `perplexity`, etc.) | Own the brainstorming process end-to-end: create content, log reflections, cross-review, keep evidence updated. |
+| Moderator (default: `tamld`) | Defines the topic, creates the branch, reviews contributions, merges outcomes. |
+| Contributors (AAs: `codex`, `gemini`, `perplexity`, etc.) | Pull the latest branch, add ideas/evidence, respect guardrails. |
 | Observer (optional stakeholder) | Read-only; raises feedback via issues/comments. |
 
 ## 3. Branch Workflow
@@ -21,32 +21,31 @@ This playbook keeps brainstorming collaborative, auditable, and aligned with the
    git checkout -b brainstorm/<topic>-<YYYYMMDD>
    git push -u origin HEAD
    ```
-2. **Scaffold session** (Moderator):
-   - Create `brainstorm/<topic>/README.md` from `brainstorm/templates/session_readme_template.md`.
-   - Commit & push the scaffold (objective, guardrails, participant list).
-3. **Contributors (AAs) join and lead**:
+2. **Scaffold session**:
+   - Create `brainstorm/<topic>/README.md` using `brainstorm/templates/session_readme_template.md`.
+   - Commit & push the scaffold (includes overview, guardrails, participant table).
+3. **Contributors join**:
    ```bash
    git fetch origin
    git checkout brainstorm/<topic>-<YYYYMMDD>
    git pull --ff-only
    ```
-4. **Contribution layout** (AAs):
+4. **Contribution layout**:
    - Ideas: `brainstorm/<topic>/ideas/<aa_id>/<slug>.md`
-   - Evidence: `brainstorm/<topic>/evidence/<filename>.*`
-   - Update session README tables (contributions, open questions) as work progresses.
+   - Evidence/supporting docs: `brainstorm/<topic>/evidence/<filename>.*`
+   - Tracking table in the session README updated per idea/question.
 5. **Commit etiquette**:
-   - One idea/change per commit (`feat(brainstorm): add idea on stm-delta-evaluation`).
-   - Include front matter with author, timestamp, question, related artefacts, confidentiality level.
-6. **Draft PR** (AAs):
-   - Open a draft PR to `main`, mention `@codex` for Copilot review, summarise objectives and key findings.
-   - Continue iterating in the branch until the session completes.
-7. **Merge & archive** (Moderator):
-   - Verify CI (sanitize, pytest) is green and no conflicts exist.
-   - Approve/merge once conflicts are resolved; update SoT artefacts with accepted outcomes.
+   - 1 idea per commit (`feat(brainstorm): add idea on stm-delta-evaluation`).
+   - Cite artefacts and related SoT references inside the Markdown front matter.
+6. **Draft PR**:
+   - Open a draft PR to `main`, mention `@codex` for Copilot review, describe objectives + summary.
+7. **Merge & archive**:
+   - Ensure CI (sanitize, pytest) is green, no conflicts.
+   - Moderator merges and links outcomes back to `docs/briefs/project_charter.md`, `plans/poc/ROADMAP.md`, or lessons repo.
 
 ## 4. Contribution Rules & Templates
-- **Reflection-first**: each idea starts with LAW-REFLECT-001 notes before proposing actions.
-- **Front matter** (required):
+- **Law compliance**: start each idea with reflection bullet points referencing LAW-REFLECT-001.
+- **Front matter template** (required):
   ```markdown
   ---
   author: codex
@@ -55,34 +54,34 @@ This playbook keeps brainstorming collaborative, auditable, and aligned with the
   related_artifacts:
     - docs/briefs/project_charter.md
     - samples/logs/2025-10-24T150000Z.jsonl
-  confidentiality: public-poc
+  confidentiality: public-poC
   ---
   ## Idea
   ...
   ```
-- **Question tracking**: list questions in session README and mark them resolved via commits.
-- **Sensitive data**: redact immediately; use ticket references if further detail resides outside the repo.
-- **Cross-feedback**: AAs comment inside idea files using blockquotes with their IDs.
+- **Question tracking**: log in session README “Open Questions” checklist and mirror in commit messages when addressed.
+- **Sensitive data**: redact immediately; if required for context, store in private systems and link via ticket ID.
+- **Cross-feedback**: comment inside idea files using blockquotes (e.g., `> Feedback (gemini): ...`) to keep context centralized.
 
 ## 5. Review & Promotion
-- PR description should include a table: ✔ accepted / ❓ needs data / ✖ dropped.
-- Accepted ideas map to tasks (update `plans/poc/ROADMAP.md` or create backlog entries). Rejected ideas remain for traceability.
-- Lessons feed the STM → LTM lifecycle once evidence satisfies thresholds.
+- Annotate the PR description with a decision table: Accepted ✔ / Needs Data ❓ / Dropped ✖.
+- Accepted ideas become tasks (update `plans/poc/ROADMAP.md` or create backlog entries). Rejects remain documented for traceability.
+- Convert lessons into STM and evaluate for LTM promotion following the SoT lifecycle.
 
 ## 6. Automation & Guardrails
-- Optional GitHub Actions: enforce structure, check front matter, run sanitize script.
-- Auto-merge policy obeys `docs/briefs/contribution_policy.md` (CI green, no conflicts, Copilot review).
-- Branch protection ensures only moderators can merge; contributors request human approval when conflicts arise.
+- Optional GitHub Actions: lint directory structure, enforce front matter, run sanitize script.
+- Auto-merge policy follows `docs/briefs/contribution_policy.md` (CI green, no conflicts, Copilot review).
+- Use branch protection rules to ensure only authorized moderators merge brainstorm branches.
 
 ## 7. Retrospective & Reporting
-- After merge, add `brainstorm/<topic>/RETRO.md` summarising outcomes, risks, follow-ups.
-- Mention retrospectives in the monthly executive summary for stakeholders.
-- Optionally tag the merge commit (e.g., `brainstorm/<topic>-<YYYYMMDD>`).
+- After merge, add `brainstorm/<topic>/RETRO.md` summarising outcomes, risks, and follow-up actions.
+- Mention retrospectives in the monthly executive summary to stakeholders.
+- Archive the branch (optionally tag with `brainstorm/<topic>-<YYYYMMDD>`).
 
 ## 8. Security Considerations
 - No credentials, API tokens, or customer specifics in brainstorm artefacts.
-- Keep runtime `.agents/` logs local; share sanitized examples via `samples/`.
+- Use `samples/` directory for sanitized examples; keep runtime `.agents/` logs local.
 - Run `python tools/sanitize_manifest.py --root .` before each push.
-- Document any accidental exposure in the retrospective and project charter risk log.
+- If sensitive info is accidentally committed, remove via PR and document the incident in the retro + project charter risk log.
 
-This playbook keeps brainstorming AA-led, with humans providing review and approval only when conflicts or escalation paths demand oversight.
+This playbook keeps brainstorming collaborative, auditable, and aligned with the SoT philosophy.
