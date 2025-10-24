@@ -1,17 +1,17 @@
 # Brainstorm Collaboration Playbook
 
-This playbook explains how AI agents (AAs) collaborate on structured brainstorming sessions while keeping every artefact traceable in the repository.
+This playbook ensures structured, auditable brainstorming across AI agents (AAs) while protecting sensitive information.
 
 ## 1. Purpose
 - Maintain a transparent, version-controlled space for ideation that complements the MCP Orchestration Framework.
-- Ensure every brainstorm item references the Single Source of Truth (SoT) and can graduate into formal plans or lessons.
+- Guarantee that every brainstorm item references the Single Source of Truth (SoT) and can mature into formal plans or lessons.
 
 ## 2. Roles
 | Role | Responsibilities |
 | --- | --- |
 | Moderator (default: `tamld`) | Defines the topic, creates the branch, reviews contributions, merges outcomes. |
-| Contributors (AAs, e.g., `codex`, `gemini`, `perplexity`) | Pull the latest branch, add ideas/evidence, follow guardrails. |
-| Observer (optional stakeholders) | Read-only; provide feedback through issues or comments. |
+| Contributors (AAs: `codex`, `gemini`, `perplexity`, etc.) | Pull the latest branch, add ideas/evidence, respect guardrails. |
+| Observer (optional stakeholder) | Read-only; raises feedback via issues/comments. |
 
 ## 3. Branch Workflow
 1. **Create topic branch** (Moderator):
@@ -21,59 +21,67 @@ This playbook explains how AI agents (AAs) collaborate on structured brainstormi
    git checkout -b brainstorm/<topic>-<YYYYMMDD>
    git push -u origin HEAD
    ```
-2. **Prepare workspace for contributors**:
-   - Add a session README under `brainstorm/<topic>/README.md` describing goals, timeline, and success criteria.
-   - Commit & push the initial scaffold.
+2. **Scaffold session**:
+   - Create `brainstorm/<topic>/README.md` using `brainstorm/templates/session_readme_template.md`.
+   - Commit & push the scaffold (includes overview, guardrails, participant table).
 3. **Contributors join**:
    ```bash
    git fetch origin
    git checkout brainstorm/<topic>-<YYYYMMDD>
    git pull --ff-only
    ```
-4. **Contribution cadence**:
-   - Each idea lives under `brainstorm/<topic>/ideas/<aa_id>/<slug>.md`.
-   - Evidence or supporting artefacts go in `brainstorm/<topic>/evidence/<filename>.*`.
-   - Update the session README with summaries or decisions after each round.
-5. **Commit guidelines**:
-   - Use clear messages, e.g., `feat(brainstorm): add idea on stm-delta-evaluation`.
-   - Run mandatory checks (sanitize + pytest if applicable) before pushing.
+4. **Contribution layout**:
+   - Ideas: `brainstorm/<topic>/ideas/<aa_id>/<slug>.md`
+   - Evidence/supporting docs: `brainstorm/<topic>/evidence/<filename>.*`
+   - Tracking table in the session README updated per idea/question.
+5. **Commit etiquette**:
+   - 1 idea per commit (`feat(brainstorm): add idea on stm-delta-evaluation`).
+   - Cite artefacts and related SoT references inside the Markdown front matter.
 6. **Draft PR**:
-   - Open a draft PR targeting `main`.
-   - Mention `@codex` for Copilot review and note the brainstorming objective.
-7. **Merge & archival**:
-   - Moderator converts the PR to “Ready for review” once the session is complete and CI is green.
-   - After merge, update `docs/briefs/project_charter.md` or relevant artefacts with decisions, if any.
+   - Open a draft PR to `main`, mention `@codex` for Copilot review, describe objectives + summary.
+7. **Merge & archive**:
+   - Ensure CI (sanitize, pytest) is green, no conflicts.
+   - Moderator merges and links outcomes back to `docs/briefs/project_charter.md`, `plans/poc/ROADMAP.md`, or lessons repo.
 
-## 4. Contribution Rules
-- Respect LAW-REFLECT-001: note the reflection step before proposing a solution.
-- Cite SoT references (e.g., template IDs, policy sections) within each idea file.
-- Keep sensitive data out; use `REDACTED` placeholders when necessary.
-- Limit a single idea per file to maintain atomic history.
-- Prefer Markdown with front matter template:
+## 4. Contribution Rules & Templates
+- **Law compliance**: start each idea with reflection bullet points referencing LAW-REFLECT-001.
+- **Front matter template** (required):
   ```markdown
   ---
   author: codex
   timestamp: 2025-10-24T17:00:00Z
-  confidence: medium
+  question: "How do we quantify STM→LTM delta?"
   related_artifacts:
     - docs/briefs/project_charter.md
     - samples/logs/2025-10-24T150000Z.jsonl
+  confidentiality: public-poC
   ---
   ## Idea
   ...
   ```
+- **Question tracking**: log in session README “Open Questions” checklist and mirror in commit messages when addressed.
+- **Sensitive data**: redact immediately; if required for context, store in private systems and link via ticket ID.
+- **Cross-feedback**: comment inside idea files using blockquotes (e.g., `> Feedback (gemini): ...`) to keep context centralized.
 
 ## 5. Review & Promotion
-- Use the PR discussion for quick triage (mark ideas as ✔ accepted, ❓ needs data, ✖ dropped).
-- Accepted ideas should map to follow-up tasks in `plans/poc/ROADMAP.md` or backlog entries.
-- Lessons stemming from the brainstorm should pass through the STM → LTM evaluation process.
+- Annotate the PR description with a decision table: Accepted ✔ / Needs Data ❓ / Dropped ✖.
+- Accepted ideas become tasks (update `plans/poc/ROADMAP.md` or create backlog entries). Rejects remain documented for traceability.
+- Convert lessons into STM and evaluate for LTM promotion following the SoT lifecycle.
 
-## 6. Automation Hooks
-- Optional GitHub Action can enforce directory structure (`brainstorm/<topic>/...`) and sanitize checks.
-- Auto-merge remains subject to CI success, no conflicts, and Copilot review (see `docs/briefs/contribution_policy.md`).
+## 6. Automation & Guardrails
+- Optional GitHub Actions: lint directory structure, enforce front matter, run sanitize script.
+- Auto-merge policy follows `docs/briefs/contribution_policy.md` (CI green, no conflicts, Copilot review).
+- Use branch protection rules to ensure only authorized moderators merge brainstorm branches.
 
-## 7. Session Retrospective
-- After merging, create `brainstorm/<topic>/RETRO.md` summarising outcomes, risks, and next actions.
-- Mention retrospectives in the monthly executive summary for stakeholders.
+## 7. Retrospective & Reporting
+- After merge, add `brainstorm/<topic>/RETRO.md` summarising outcomes, risks, and follow-up actions.
+- Mention retrospectives in the monthly executive summary to stakeholders.
+- Archive the branch (optionally tag with `brainstorm/<topic>-<YYYYMMDD>`).
 
-Following this playbook ensures every brainstorming effort remains auditable, structured, and easy to roll into production planning.
+## 8. Security Considerations
+- No credentials, API tokens, or customer specifics in brainstorm artefacts.
+- Use `samples/` directory for sanitized examples; keep runtime `.agents/` logs local.
+- Run `python tools/sanitize_manifest.py --root .` before each push.
+- If sensitive info is accidentally committed, remove via PR and document the incident in the retro + project charter risk log.
+
+This playbook keeps brainstorming collaborative, auditable, and aligned with the SoT philosophy.
