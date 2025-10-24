@@ -1,5 +1,6 @@
 # PoC Documentation
 
+- [Project Charter](briefs/project_charter.md)
 - [Architecture Overview](design/overview.md)
 - [API Integration](design/api_integration.md)
 - [Value Story](briefs/value_story.md)
