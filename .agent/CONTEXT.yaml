@@ -2,13 +2,13 @@ repo_name: mcp-poc-operations
 workspace_root: ${WORKSPACE_ROOT}
 default_branch: main
 presentation:
-  locale: vi-VN
+  locale: en-US
   tone: concise
   formats:
     - markdown
     - tables
     - icons
-  summary_rule: "Bắt đầu bằng 1-2 dòng plain-text trước markdown."
+  summary_rule: "Begin with a 1-2 line plain-text summary before Markdown."
   icon_set:
     info: "ℹ️"
     warn: "⚠️"
@@ -18,11 +18,11 @@ presentation:
 confidentiality:
   exposure_level: "PoC-public"
   notes:
-    - "Thay thế chi tiết kỹ thuật độc quyền bằng placeholder REDACTED."
-    - "Không đưa dữ liệu khách hàng."
+    - "Replace proprietary technical details with REDACTED placeholders."
+    - "Exclude customer data from the repository."
 anchors:
   mode: disabled
-  rationale: "Anchors thực được quản lý tại MCP-Server; PoC chạy dry-run."
+  rationale: "Live anchors are managed by MCP-Server; this PoC runs in dry-run mode."
 templates:
   - path: ../memory/templates/
-    usage: "Tái sử dụng template MCP Global đã kiểm duyệt."
+    usage: "Reuse selected templates vetted by the MCP Global store."

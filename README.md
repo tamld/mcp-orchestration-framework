@@ -1,92 +1,92 @@
-# 🌐 MCP PoC Operations Framework
+# 🌐 MCP Orchestration Framework (PoC)
 
-> Bản thử nghiệm thân thiện với khách hàng, mô phỏng cách vận hành một MCP Server rút gọn mà vẫn bảo toàn bí mật cốt lõi.
+> Customer-facing proof of concept that demonstrates a streamlined MCP-style control plane while keeping confidential implementation details private.
 
-## ✨ Tổng quan nhanh
-- ✅ **Triển khai đa tác vụ & đa tác nhân**: skeleton Python (`src/mcp_poc_framework`) cho phép đăng ký nhiều agent và phân phối tác vụ theo skill.
-- 🔌 **Tích hợp API AA bên ngoài**: adapter HTTP (`integrations/providers.py`) dùng token môi trường, dễ mở rộng sang gRPC/WebSocket.
-- 🧱 **SSoT kiểm soát trung tâm**: `SSoTStateStore` lưu assignment/result, đồng bộ với log JSONL để audit.
-- 🔒 **Bí mật đảm bảo**: chỉ chia sẻ kiến trúc chiến lược, mọi chi tiết nhạy cảm được thay bằng placeholder `REDACTED` và kiểm tra sanitize.
-- 📊 **Artefact chứng minh**: log AA, checklist sanitize, sơ đồ value loop, roadmap Gate và sample workflow.
+## ✨ Quick Highlights
+- ✅ **Multi-task & multi-agent ready** – Python skeleton (`src/mcp_poc_framework`) registers several agents and routes work by skill.
+- 🔌 **External AA integration** – HTTP adapter (`integrations/providers.py`) relies on environment tokens and can be extended to gRPC/WebSocket.
+- 🧱 **Central SSoT** – `SSoTStateStore` captures assignments/results and aligns with JSONL logs for audits.
+- 🔒 **Confidential by design** – only share strategic architecture; sensitive assets remain `REDACTED` and pass sanitize checks.
+- 📊 **Evidence bundle** – agent logs, sanitize checklist, value-loop SVG, gate roadmap, and sample workflows.
 
 ![Value Loop](docs/assets/value-loop.svg)
 
-## 🧭 Sơ đồ vận hành
+## 🧭 Execution Flow
 ```mermaid
 flowchart TD
-    A([Bootstrap Tinh Gọn]) --> B{LAW-REFLECT-001}
-    B -->|OK| C[Plan ≤5 bước]
-    C --> D[Execute tối thiểu]
-    D --> E[Thu thập Evidence]
-    E --> F{Gate Review}
-    F -->|Pass| G[Promote Artefact]
-    F -->|Chặn| H[Điều chỉnh + Log deviation]
+    A([Bootstrap]) --> B{LAW-REFLECT-001}
+    B -->|OK| C[Plan ≤5 steps]
+    C --> D[Minimal execution]
+    D --> E[Collect evidence]
+    E --> F{Gate review}
+    F -->|Pass| G[Promote artefact]
+    F -->|Block| H[Adjust & log deviation]
 ```
 
-## 🧱 Kiến trúc repo (rút gọn)
-| Thư mục | Nội dung chính | Lý do tồn tại |
+## 🧱 Repository Structure
+| Folder | Key contents | Purpose |
 | --- | --- | --- |
-| `.agent/` | Chính sách PoC, liên kết SSoT Global, checklist sanitize | Giữ đồng bộ với MCP-Server |
-| `.agents/` | Log hành động AA, backlog gating | Audit trail minh bạch |
-| `src/mcp_poc_framework/` | Framework đa tác vụ/đa tác nhân | Trái tim PoC |
-| `configs/` | YAML cấu hình provider/agent/task (placeholder) | Tách biệt thông tin nhạy cảm |
-| `docs/` | Tài liệu khách hàng (overview, API integration, value story) | Trình bày giá trị & định hướng |
-| `memory/templates/` | Mẫu artefact đã kiểm duyệt | Khởi tạo nhanh |
-| `samples/` | Demo workflow & log minh họa | Chứng minh concept |
-| `tools/` | Script bootstrap + sanitize | Đảm bảo guardrail |
+| `.agent/` | PoC policies, SoT linkage, sanitize checklist | Keeps alignment with global MCP guidance |
+| `.agents/` | Agent action logs, backlog stubs | Transparent audit trail |
+| `src/mcp_poc_framework/` | Multi-agent orchestration core | Heart of the framework |
+| `configs/` | Provider/agent/task YAML samples | Separates sensitive runtime data |
+| `docs/` | Customer docs (overview, API, value story) | Communicates value & guardrails |
+| `memory/templates/` | Sanitised contract/template samples | Quick-start artefacts |
+| `samples/` | Demo workflows & API walkthroughs | Evidence of concept |
+| `tools/` | Bootstrap + sanitize scripts | Enforces guardrails |
 
-> 📁 Chi tiết đầy đủ xem tại `docs/design/overview.md` và `plans/poc/ROADMAP.md`.
+> 📁 Consult `docs/design/overview.md` and `plans/poc/ROADMAP.md` for additional detail.
 
-## ⚖️ Đánh giá chiến lược
-| Khía cạnh | Điểm mạnh (Pros) | Lưu ý (Cons) |
+## ⚖️ Strategic Snapshot
+| Aspect | Strengths | Trade-offs |
 | --- | --- | --- |
-| Vận hành | ✅ Khớp với luật Global (LAW-REFLECT-001, artefact must-have) | ⚠️ Chưa kích hoạt ghi anchor thực tế, cần hạ tầng MCP đầy đủ |
-| Bảo mật | ✅ Script sanitize & checklist ngăn rò rỉ | ⚠️ PoC chưa bật CI thực, cần cấu hình trước production |
-| Khả năng mở rộng | ✅ Gate roadmap rõ → dễ nâng cấp | ⛔ Chưa tích hợp dữ liệu khách hàng, tránh dùng cho production |
+| Operations | ✅ Aligns with MCP laws (LAW-REFLECT-001, artefact must-haves) | ⚠️ Anchors disabled; needs full MCP infrastructure for production |
+| Security | ✅ Sanitize script + checklist prevent leakage | ⚠️ CI pipelines disabled; enable before production |
+| Scalability | ✅ Gate roadmap clarifies upgrade path | ⛔ No customer data integration yet |
 
-## 🚧 Phạm vi bảo mật (Confidentiality Guardrails)
-- Chỉ cung cấp **cấp kiến trúc**; các thông số kỹ thuật, mã nguồn độc quyền và bí quyết triển khai được thay bằng `REDACTED`.
-- Mọi tài liệu trong `docs/briefs/` và `samples/` đều trải qua checklist `tools/sanitize_manifest.py`.
-- Khi khách hàng yêu cầu nâng cấp, sử dụng Gate G1 → G3 để đưa chi tiết kỹ thuật vào kênh riêng, không commit lên repo public.
+## 🚧 Confidentiality Guardrails
+- Share **architecture-level** information only; keep secrets/IP as `REDACTED`.
+- Every brief/workflow under `docs/` and `samples/` must pass `tools/sanitize_manifest.py`.
+- Promote from Gate G1→G3 before moving sensitive artefacts into private storage.
 
-## 🛠️ Thiết lập nhanh (Quickstart)
+## 🛠️ Quickstart
 ```bash
-# 1. Tạo môi trường PoC
+# 1. Create PoC environment
 python3 -m venv .venv && source .venv/bin/activate
 
-# 2. Cài đặt công cụ kiểm tra
-pip install -r requirements.txt  # runtime & test deps (httpx, pydantic, pytest)
-# (tùy chọn) pip install -r requirements-docs.txt  # mkdocs, ruff
+# 2. Install tooling
+pip install -r requirements.txt          # runtime & tests (httpx, pydantic, pytest)
+# optional: pip install -r requirements-docs.txt  # mkdocs, ruff
 
-# 3. Chạy checklist PoC
+# 3. Run PoC checks
 python tools/sanitize_manifest.py --dry-run
 ./tools/bootstrap_orchestrator.sh --fast
 ```
 
-- 🔁 **Dry-run only**: PoC không cập nhật anchors thực, mọi thay đổi dừng ở `memory/staged/`.
-- 🧪 **Verify**: Log kiểm thử nằm trong `.agents/logs/`.
+- 🔁 **Dry-run only**: PoC never writes real anchors; updates stop at `memory/staged/`.
+- 🧪 **Verification**: Agent activity lives under `.agents/logs/`.
 
-## 📌 Artefact minh chứng
-- 📘 `docs/design/overview.md` – mô tả kiến trúc & value stream.
-- 🔌 `docs/design/api_integration.md` – chiến lược tích hợp API đa nền tảng AA.
-- 🧾 `.agents/logs/2025-10-24T150000Z.jsonl` – ví dụ log hành động AA tuân thủ schema.
-- 🧰 `tools/sanitize_manifest.py` – script phát hiện chuỗi nhạy cảm phổ biến.
-- 🗺️ `plans/poc/ROADMAP.md` – Gate G0→G3 cùng điều kiện promote.
-- 🧱 `tech_fit.yaml` – hồ sơ kỹ thuật cho Architect Mode (ẩn chi tiết kinh doanh).
-- 🔄 `configs/providers.example.yaml` – mẫu cấu hình provider/agent/task cho multi-agent orchestration.
-- 💻 `samples/api_workflow.md` – walkthrough orchestrator gọi API giả lập và ghi nhận SSoT.
+## 📌 Evidence Bundle
+- 📘 `docs/design/overview.md` – architecture & value stream.
+- 🔌 `docs/design/api_integration.md` – API integration strategy.
+- 🧾 `.agents/logs/2025-10-24T150000Z.jsonl` – schema-aligned agent log sample.
+- 🧰 `tools/sanitize_manifest.py` – sensitive-string detector.
+- 🗺️ `plans/poc/ROADMAP.md` – Gate G0→G3 checklist.
+- 🧱 `tech_fit.yaml` – architectural tech profile (redacted details).
+- 🔄 `configs/providers.example.yaml` – sample provider/agent/task config.
+- 💻 `samples/api_workflow.md` – orchestration walkthrough feeding the SSoT.
 
-## 🔭 Tiềm năng ứng dụng
-- **Đồng bộ đội AI Agent**: onboarding nhiều agent/nhóm cùng lúc với skill matrix rõ ràng.
-- **Trình diễn khách hàng**: minh họa cách kiểm soát rủi ro khi phối hợp agent từ nền tảng khác nhau.
-- **Bệ phóng sản phẩm**: sẵn sàng nâng cấp state store & adapter để kết nối hệ thống domain-specific (DevOps, CS ops...).
+## 🔭 Potential Applications
+- **Multi-agent onboarding** – spin up coordinated teams using skill matrices.
+- **Customer demonstrations** – showcase guardrails while mixing providers.
+- **Product runway** – replace PoC state store & adapters for domain-specific launches.
 
-## 🤝 Quy trình nâng cấp
-1. G0 – chốt phạm vi và bảo mật (contract + checklist).
-2. G1 – kích hoạt CI lint + artefact must-have.
-3. G2 – Demo end-to-end (khách hàng quan sát, log minh bạch).
-4. G3 – Đàm phán phát triển chính thức: chuyển chi tiết kỹ thuật sang kho private, bật anchors thực.
+## 🤝 Upgrade Journey
+1. **G0** – confirm scope & security (contract + checklist).
+2. **G1** – enable lint/tests & mandatory artefacts.
+3. **G2** – deliver end-to-end demo with transparent logs.
+4. **G3** – shift to private repo, enable real anchors, negotiate delivery.
 
-## 📬 Liên hệ & bản quyền
-- PoC do đội MCP AI Agents phát triển. Các chi tiết thực tế chỉ được chia sẻ qua kênh bảo mật sau khi hai bên ký thỏa thuận.
-- © 2025 MCP Operations – phát hành theo giấy phép nội bộ PoC (khách hàng chỉ được xem, không tái phân phối kỹ thuật).
+## 📬 Licensing & Contact
+- PoC maintained by the MCP AI Operations team. Secrets are shared privately post-NDA.
+- © 2025 MCP Operations — internal PoC license (view-only; no redistribution of proprietary techniques).

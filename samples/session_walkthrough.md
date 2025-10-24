@@ -1,17 +1,17 @@
-# Walkthrough Demo – MCP PoC Operations
+# Walkthrough Demo – MCP Orchestration Framework
 
-## Bối cảnh
-yêu cầu khách hàng: "Cho thấy cách các agent MCP lên kế hoạch và ghi log mà không lộ bí mật."
+## Context
+Customer request: "Show how MCP agents plan and log while keeping sensitive details hidden."
 
-## Các bước trình diễn
-1. **Bootstrap** – chạy `./tools/bootstrap_orchestrator.sh --fast` và trình chiếu log.
-2. **Reflection** – mở template `memory/templates/contract_template.md`, điền tóm tắt (ẩn chi tiết).
-3. **Thực thi** – cập nhật README (chỉ giới thiệu kiến trúc) và ghi evidence vào `.agents/logs/`.
-4. **Review** – duyệt checklist `docs/briefs/sanitize_checklist.md` trước khi push.
+## Demo Steps
+1. **Bootstrap** – run `./tools/bootstrap_orchestrator.sh --fast` and display the console output.
+2. **Reflection** – open `memory/templates/contract_template.md`, fill the summary (mask details).
+3. **Execution** – update the README (architecture only) and record evidence in `.agents/logs/`.
+4. **Review** – complete `docs/briefs/sanitize_checklist.md` before pushing.
 
-## Kết quả kỳ vọng
-- Khách hàng thấy toàn bộ quy trình tuân thủ guardrail.
-- Không có dữ liệu nhạy cảm hiển thị.
-- Log minh chứng khẳng định các bước đã thực hiện.
+## Expected Outcomes
+- Stakeholders see the guardrail-compliant workflow.
+- No sensitive data is exposed.
+- Evidence logs confirm each action.
 
-> Ghi chú: PoC không bật chức năng ghi anchors thật. Mọi yêu cầu nâng cấp phải được thương thảo ở Gate G3.
+> Note: the PoC never enables real anchors. Any upgrade requires Gate G3 sign-off and a private channel.

@@ -1,13 +1,13 @@
 # Multi-Agent API Workflow (PoC)
 
-## Chuẩn bị
+## Preparation
 ```bash
 export EXAMPLE_AA_TOKEN="REDACTED"
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Chạy orchestrator mẫu
+## Run the sample orchestrator
 ```python
 import asyncio
 
@@ -23,12 +23,12 @@ ctx = OrchestratorContext(config=cfg, registry=registry, state_store=state_store
 
 async def main():
     orchestrator = TaskOrchestrator(ctx)
-    # Payload giả lập, không chứa dữ liệu nhạy cảm
+    # Simulated payloads – do not include sensitive data
     results = await orchestrator.run_tasks([
         "discovery_brief",
         "sanitize_audit"
     ], [
-        {"customer_prompt": "Tổng hợp yêu cầu PoC"},
+        {"customer_prompt": "Summarise PoC requirement"},
         {"repo_path": "mcp-poc-operations"}
     ])
     print(results)
@@ -37,4 +37,4 @@ async def main():
 asyncio.run(main())
 ```
 
-> Lưu ý: API thực tế cần endpoint `/invoke` của provider. PoC không gửi dữ liệu nội bộ thực.
+> Note: a real deployment would target the provider `/invoke` endpoint. The PoC never sends internal production data.

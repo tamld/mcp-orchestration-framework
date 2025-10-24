@@ -22,13 +22,13 @@ agents:
       tier: beta
 tasks:
   - id: discovery_brief
-    description: Thu thập yêu cầu khách hàng và sinh contract placeholder.
+    description: Collect customer requirements and produce a placeholder contract.
     required_skills:
       - planning
       - coordination
     sla_minutes: 10
   - id: sanitize_audit
-    description: Chạy checklist sanitize trước khi public.
+    description: Run the sanitize checklist before any public release.
     required_skills:
       - execution
       - validation

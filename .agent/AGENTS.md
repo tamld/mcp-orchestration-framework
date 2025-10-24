@@ -1,32 +1,32 @@
-# Hướng dẫn Agent – MCP PoC Operations
+# Agent Guide – MCP Orchestration Framework
 
-## Nguồn chỉ đạo
-- **SSoT Global**: `${MCP_ROOT}` (tham chiếu MCP-Server). Không tự ý chỉnh sửa luật.
-- **Repo này**: chỉ bổ sung quy trình PoC, không được nới lỏng guardrail.
-- Nếu thấy xung đột → ưu tiên Global, ghi chú vào `.agents/backlog/conflicts.yaml`.
+## Sources of Authority
+- **Global SSoT**: `${MCP_ROOT}` (references the central MCP repository). Never override core laws locally.
+- **This repository**: only adds PoC procedures; do not relax guardrails.
+- If conflicts appear → follow Global guidance and log the deviation in `.agents/backlog/conflicts.yaml`.
 
-## Bootstrap
-1. Chạy `tools/bootstrap_orchestrator.sh --fast`.
-2. Đọc `README.md` và `docs/design/overview.md`.
-3. Thực hiện LAW-REFLECT-001: reflect → plan ≤5 bước → execute tối thiểu.
+## Bootstrap Checklist
+1. Run `tools/bootstrap_orchestrator.sh --fast`.
+2. Read `README.md` and `docs/design/overview.md`.
+3. Follow LAW-REFLECT-001: reflect → create a ≤5 step plan → execute minimally.
 
-## Artefact must-have
+## Mandatory Artefacts
 - `tech_fit.yaml`
 - `tests/PLAN.md`
-- `.agents/logs/*.jsonl` (schema lấy từ `${MCP_ROOT}/schemas/aa_log.schema.json`)
-- `docs/briefs/*` (Cons/Pros, roadmap) kèm checklist sanitize.
+- `.agents/logs/*.jsonl` (schema defined in `${MCP_ROOT}/schemas/aa_log.schema.json`)
+- `docs/briefs/*` (pros/cons, roadmap) plus the sanitize checklist.
 
-## Chính sách bảo mật
-- Thay chi tiết độc quyền bằng `REDACTED`.
-- Tất cả PR public phải chạy `python tools/sanitize_manifest.py --dry-run`.
-- Anchors, bundle thực tế bị vô hiệu (PoC); nếu cần kích hoạt phải chuyển Gate G3 và dùng repo private.
+## Security Policy
+- Replace proprietary details with `REDACTED`.
+- Every public PR must run `python tools/sanitize_manifest.py --dry-run`.
+- Real anchors/bundles are disabled in this PoC; enable only after Gate G3 in a private repo.
 
-## Checklist trước commit
-- [ ] Contract phạm vi và giả định được cập nhật trong `.agents/logs/`.
-- [ ] Chạy sanitize script và ghi lại kết quả.
-- [ ] Bổ sung evidence link vào artefact.
-- [ ] Ghi lý do nếu bỏ qua artefact “should”.
+## Pre-commit Checklist
+- [ ] Scope contract and assumptions logged in `.agents/logs/`.
+- [ ] Sanitize script executed and result recorded.
+- [ ] Evidence links added to relevant artefacts.
+- [ ] Deviation reason written when skipping any “should” artefact.
 
-## Liên hệ
+## Contacts
 - `owner`: MCP AI Operations Team (placeholder)
-- `aa_id`: điền định danh tác nhân khi log hành động.
+- `aa_id`: record the agent identifier in activity logs.

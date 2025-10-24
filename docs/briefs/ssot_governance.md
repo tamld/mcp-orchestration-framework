@@ -1,21 +1,21 @@
 # SSoT Governance Snapshot
 
-## Nguyên tắc chính
-- **One true state**: mọi assignment/task result đều lưu qua `SSoTStateStore`.
-- **Bằng chứng bắt buộc**: artefact công khai phải chỉ rõ nguồn dữ liệu (ví dụ `serialize()` dump).
-- **Không tự động sync** ra môi trường production khi chưa qua Gate G3.
+## Core Principles
+- **One true state** – every assignment/result flows through `SSoTStateStore`.
+- **Evidence required** – public artefacts must cite their data source (e.g., `serialize()` dump).
+- **No auto-sync** to production until Gate G3 approvals are complete.
 
-## Kiểm soát trong PoC
-- Store ở bộ nhớ (RAM) nhưng cung cấp API xuất JSON để nhúng vào báo cáo.
-- Kết hợp log `.agents/logs/` cho phép backtrace hành động → task → agent.
-- Checklist sanitize kiểm tra không rò rỉ token/base_url riêng.
+## PoC Controls
+- In-memory store exposes JSON exports for reporting.
+- `.agents/logs/` provide backtrace from action → task → agent.
+- Sanitize checklist ensures tokens/base URLs are not leaked.
 
-## Lộ trình nâng cấp
-| Giai đoạn | Hành động | Bằng chứng |
+## Upgrade Path
+| Stage | Action | Evidence |
 | --- | --- | --- |
-| G1 | Thêm export JSON ra `memory/anchors/staged/` | Bản dump audit |
-| G2 | Gắn CI upload artefact lên kho bảo mật | Log CI |
-| G3 | Triển khai SSoT thật (Postgres/Redis) + encryption at rest | Tài liệu kiến trúc riêng |
+| G1 | Export JSON snapshots to `memory/anchors/staged/` | Audit dump |
+| G2 | Attach CI upload to secure storage | CI logs |
+| G3 | Deploy durable SSoT (Postgres/Redis) with encryption at rest | Private architecture pack |
 
 ## Deviation Policy
-- Mọi sai lệch khỏi quy trình SSoT phải log vào `.agents/backlog/conflicts.yaml` với `deviation.reason`.
+- Log any deviation from the SSoT process in `.agents/backlog/conflicts.yaml` with `deviation.reason`.

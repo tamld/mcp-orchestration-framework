@@ -1,11 +1,11 @@
-# MCP PoC Operations – Kiến trúc & Value Stream
+# MCP Orchestration Framework – Architecture & Value Stream
 
-## 1. Mục tiêu
-- Chứng minh quy trình vận hành MCP-Server ở quy mô nhỏ cho khách hàng quan sát.
-- Giữ bí mật kỹ thuật bằng cách chỉ công khai thành phần chiến lược.
-- Chuẩn bị nền tảng để nâng cấp nhanh thành sản phẩm đầy đủ sau khi PoC được duyệt.
+## 1. Objectives
+- Demonstrate how an MCP-style control plane can operate in a customer-facing PoC.
+- Preserve confidential techniques by publishing strategy-level artefacts only.
+- Prepare a foundation that can be promoted to a production product after validation.
 
-## 2. Kiến trúc framework (rút gọn)
+## 2. Framework Architecture (high level)
 ```
 +------------------+      +------------------+      +---------------------+
 | Global MCP SSoT  | ---> | PoC Bootstrapper | ---> | Framework Core      |
@@ -23,37 +23,37 @@
 ```
 
 - **Framework Core** (`src/mcp_poc_framework/`):
-  - `config.py`: nạp providers/agents/tasks từ YAML.
-  - `agents/registry.py`: ánh xạ skill → agent → provider.
-  - `pipeline/executor.py`: điều phối tác vụ, ghi nhận kết quả.
-  - `tasks/scheduler.py`: chọn agent phù hợp theo skill matrix.
-  - `integrations/providers.py`: adapter HTTP (đa nền tảng AA) → mở rộng sang gRPC/WebSocket khi cần.
-  - `ssot/state_store.py`: SSoT in-memory, dễ nâng cấp thành dịch vụ riêng.
-- **Policies & Templates**: kế thừa guardrail MCP-Server, đảm bảo artefact có bằng chứng.
-- **Task Contracts**: `memory/templates/contract_template.md` + `configs/providers.example.yaml`.
-- **Secure Channel**: placeholder Gate G3 (repo private, lưu trữ bí mật thực sự).
+  - `config.py` loads providers/agents/tasks from YAML.
+  - `agents/registry.py` maps skills → agents → providers.
+  - `pipeline/executor.py` orchestrates tasks and records results.
+  - `tasks/scheduler.py` selects agents based on the skill matrix.
+  - `integrations/providers.py` holds the HTTP adapter (extendable to other protocols).
+  - `ssot/state_store.py` stores PoC assignments/results in memory and is ready to swap for persistent storage.
+- **Policies & Templates**: inherit MCP guardrails to ensure artefacts include evidence.
+- **Task Contracts**: `memory/templates/contract_template.md` + `configs/providers.example.yaml` set reproducible workflows.
+- **Secure Channel**: reserved for Gate G3 (private repo with sensitive assets).
 
 ## 3. Value Stream
-1. Nhận yêu cầu khách hàng → ghi contract vào `.agents/logs/`.
-2. Chạy bootstrap (LAW-REFLECT-001) → sinh kế hoạch ≤5 bước.
-3. Thực thi tác vụ tối thiểu, lưu evidence (`docs/`, `samples/`).
-4. Gate Review (G0 → G2) xác nhận PoC đáp ứng tiêu chí.
-5. Nếu khách hàng ký kết → chuyển sang repo private, bật Secure Channel.
+1. Capture customer requirement → record a scope contract in `.agents/logs/`.
+2. Run bootstrap (LAW-REFLECT-001) → produce a ≤5 step plan.
+3. Execute minimal changes and collect artefacts (`docs/`, `samples/`).
+4. Gate review (G0→G2) verifies that the PoC outcomes match expectations.
+5. Upon approval → migrate to a private repo and enable the secure channel.
 
-## 4. Bảo mật & Sanitize
-- Script `tools/sanitize_manifest.py` quét email, token, đường dẫn nội bộ.
-- Checklist tại `docs/briefs/sanitize_checklist.md` giúp kiểm tra thủ công trước khi công bố.
-- Artefact chứa `REDACTED` thay vì thông số nhạy cảm.
+## 4. Security & Sanitation
+- `tools/sanitize_manifest.py` scans for emails, tokens, home paths.
+- `docs/briefs/sanitize_checklist.md` guides manual review before publication.
+- Artefacts replace confidential details with `REDACTED`.
 
-## 5. Lộ trình nâng cấp
-| Gate | Tiêu chí | Bằng chứng |
+## 5. Gate Roadmap
+| Gate | Criteria | Evidence |
 | --- | --- | --- |
-| G0 | Repo skeleton, luật liên kết MCP | README.md, .agent/AGENTS.md |
-| G1 | Artefact must-have + sanitize pass | tech_fit.yaml, tests/PLAN.md |
-| G2 | Demo end-to-end + log khách hàng | samples/session_walkthrough.md |
-| G3 | Chuyển sang triển khai riêng | Tài liệu thương mại (không public) |
+| G0 | Repo skeleton + linkage to MCP | README, `.agent/AGENTS.md` |
+| G1 | Mandatory artefacts + sanitize pass | `tech_fit.yaml`, `tests/PLAN.md` |
+| G2 | End-to-end demo + customer-facing log | `samples/session_walkthrough.md` |
+| G3 | Private deployment plan | Confidential delivery pack |
 
-## 6. Rủi ro & Biện pháp
-- **Rò rỉ NDA**: bắt buộc chạy sanitize script và đánh giá thủ công → log kết quả.
-- **Nhầm lẫn phạm vi**: README chỉ mô tả strategic module, chi tiết kỹ thuật để trống.
-- **Thiếu minh chứng**: cung cấp artefact mẫu nhưng không chứa thông tin bí mật.
+## 6. Risks & Mitigations
+- **Confidential leakage** – always run the sanitize script and manual checklist → log evidence.
+- **Scope drift** – README focuses on strategic modules; detailed code stays private.
+- **Missing validation** – provide at least one sample workflow and agent log per gate.

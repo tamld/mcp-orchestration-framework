@@ -1,7 +1,7 @@
-# Tài liệu PoC
+# PoC Documentation
 
-- [Kiến trúc tổng quan](design/overview.md)
-- [Tích hợp API](design/api_integration.md)
+- [Architecture Overview](design/overview.md)
+- [API Integration](design/api_integration.md)
 - [Value Story](briefs/value_story.md)
-- [Checklist Sanitize](briefs/sanitize_checklist.md)
+- [Sanitize Checklist](briefs/sanitize_checklist.md)
 - [SSoT Governance](briefs/ssot_governance.md)

@@ -1,35 +1,35 @@
 # API Integration Strategy
 
-## Mục tiêu
-- Cho phép framework PoC kết nối tới nhiều nền tảng AA bên ngoài thông qua API chuẩn hóa.
-- Giữ dữ liệu vận hành dưới quyền kiểm soát của SSoT (state store) để đảm bảo traceability.
+## Objectives
+- Allow the PoC framework to connect to multiple external AA platforms through a consistent API surface.
+- Keep operational data under SSoT control so every action remains traceable.
 
-## Thành phần
-| Module | Vai trò | Artefact |
+## Components
+| Module | Role | Artefact |
 | --- | --- | --- |
-| `config.py` | Nạp cấu hình providers/agents/tasks từ YAML | `configs/providers.example.yaml` |
-| `integrations/providers.py` | Adapter HTTP (token-based) | Placeholder class `HttpAgentClient` |
-| `pipeline/executor.py` | Điều phối workflow đa tác vụ | `TaskOrchestrator` |
-| `ssot/state_store.py` | Lưu assignment/result làm SSoT | `SSoTStateStore.serialize()` |
+| `config.py` | Load providers/agents/tasks from YAML | `configs/providers.example.yaml` |
+| `integrations/providers.py` | Token-based HTTP adapter | Placeholder `HttpAgentClient` |
+| `pipeline/executor.py` | Coordinate multi-task workflows | `TaskOrchestrator` |
+| `ssot/state_store.py` | Persist assignments/results for SSoT | `SSoTStateStore.serialize()` |
 
-## Luồng tích hợp
-1. Tải config → khởi tạo `FrameworkConfig`.
-2. Tạo `AgentRegistry` để ánh xạ skill → provider.
-3. Khi có tác vụ mới, `TaskOrchestrator` gọi `TaskAssignment.from_task` lấy agent phù hợp.
-4. Adapter `build_provider_client` khởi tạo HTTP client sử dụng token từ biến môi trường.
-5. Kết quả invoke được lưu lại trong SSoT để audit.
+## Integration Flow
+1. Load configuration → initialise `FrameworkConfig`.
+2. Construct an `AgentRegistry` to map skills → providers.
+3. For each task, `TaskOrchestrator` calls `TaskAssignment.from_task` to pick a matching agent.
+4. `build_provider_client` instantiates an HTTP client using an environment token.
+5. Responses are recorded in the SSoT for audit and downstream analytics.
 
-## Edge cases & Hạn chế
-- PoC dùng `httpx.AsyncClient`; khi chuyển production cần pool connection và retries.
-- SSoT hiện chỉ lưu trong bộ nhớ; nên thay bằng Redis/Postgres khi mở rộng.
-- Config YAML không mã hóa credentials; chỉ lưu reference tên biến môi trường.
+## Edge Cases & Limitations
+- PoC uses `httpx.AsyncClient`; production should add connection pooling and retries.
+- Current SSoT is in-memory; upgrade to Redis/Postgres for durability.
+- YAML config stores only environment variable references, not credentials.
 
-## Tích hợp đa provider
-- Thêm adapter mới (ví dụ WebSocket, gRPC) trong `integrations/providers.py`.
-- Mỗi adapter cần tuân thủ giao diện `AgentAPIClient.invoke`.
-- Cập nhật `capabilities` trong YAML để gating theo khả năng provider.
+## Multi-provider Support
+- Add new adapters (WebSocket, gRPC, message bus) in `integrations/providers.py`.
+- Each adapter must implement the `AgentAPIClient.invoke` protocol.
+- Update `capabilities` in YAML to gate features per provider.
 
-## Kiểm soát & Tuân thủ
-- SSoT lưu mọi assignment/result với timestamp UTC.
-- Logs/artefact phải tham chiếu `serialize()` output; không đẩy dữ liệu raw khách hàng nếu chưa phê duyệt G3.
-- Sanitize script vẫn áp dụng trước khi xuất bản config ví dụ công khai.
+## Governance & Compliance
+- SSoT records every assignment/result with UTC timestamps.
+- Logs/artefacts should reference `serialize()` output; never publish raw customer data pre-G3.
+- Always run the sanitize script before sharing sample configs publicly.
