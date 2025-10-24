@@ -17,4 +17,4 @@
 - When migrating to a private repo (G3), integrate CI with `pre-commit` (ruff, markdownlint).
 
 ## Rollback Strategy
-- If leakage is detected → remove the public commit, update the sanitize checklist, log the deviation in `.agents/logs/`.
+- If leakage is detected → remove the public commit, update the sanitize checklist, log the deviation in runtime `.agents/logs/` (gitignored) and capture a sanitized copy in `samples/logs/` if required.

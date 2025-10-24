@@ -34,7 +34,7 @@
 - **Secure Channel**: reserved for Gate G3 (private repo with sensitive assets).
 
 ## 3. Value Stream
-1. Capture customer requirement → record a scope contract in `.agents/logs/`.
+1. Capture customer requirement → record a scope contract in runtime `.agents/logs/` (gitignored, not committed).
 2. Run bootstrap (LAW-REFLECT-001) → produce a ≤5 step plan.
 3. Execute minimal changes and collect artefacts (`docs/`, `samples/`).
 4. Gate review (G0→G2) verifies that the PoC outcomes match expectations.

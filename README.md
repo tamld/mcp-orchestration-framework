@@ -27,12 +27,12 @@ flowchart TD
 | Folder | Key contents | Purpose |
 | --- | --- | --- |
 | `.agent/` | PoC policies, SoT linkage, sanitize checklist | Keeps alignment with global MCP guidance |
-| `.agents/` | Agent action logs, backlog stubs | Transparent audit trail |
+| *(runtime)* `.agents/` | Local-only agent logs & backlog (gitignored) | Keeps secrets outside the repo |
 | `src/mcp_poc_framework/` | Multi-agent orchestration core | Heart of the framework |
 | `configs/` | Provider/agent/task YAML samples | Separates sensitive runtime data |
 | `docs/` | Customer docs (overview, API, value story) | Communicates value & guardrails |
 | `memory/templates/` | Sanitised contract/template samples | Quick-start artefacts |
-| `samples/` | Demo workflows & API walkthroughs | Evidence of concept |
+| `samples/` | Demo workflows, API walkthroughs, sample logs | Evidence of concept |
 | `tools/` | Bootstrap + sanitize scripts | Enforces guardrails |
 
 > 📁 Consult `docs/design/overview.md` and `plans/poc/ROADMAP.md` for additional detail.
@@ -64,12 +64,12 @@ python tools/sanitize_manifest.py --dry-run
 ```
 
 - 🔁 **Dry-run only**: PoC never writes real anchors; updates stop at `memory/staged/`.
-- 🧪 **Verification**: Agent activity lives under `.agents/logs/`.
+- 🧪 **Verification**: Runtime agents log to `.agents/logs/` (gitignored); see `samples/logs/` for sanitized examples.
 
 ## 📌 Evidence Bundle
 - 📘 `docs/design/overview.md` – architecture & value stream.
 - 🔌 `docs/design/api_integration.md` – API integration strategy.
-- 🧾 `.agents/logs/2025-10-24T150000Z.jsonl` – schema-aligned agent log sample.
+- 🧾 `samples/logs/2025-10-24T150000Z.jsonl` – schema-aligned agent log sample.
 - 🧰 `tools/sanitize_manifest.py` – sensitive-string detector.
 - 🗺️ `plans/poc/ROADMAP.md` – Gate G0→G3 checklist.
 - 🧱 `tech_fit.yaml` – architectural tech profile (redacted details).

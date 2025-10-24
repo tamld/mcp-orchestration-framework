@@ -7,7 +7,7 @@
 
 ## PoC Controls
 - In-memory store exposes JSON exports for reporting.
-- `.agents/logs/` provide backtrace from action → task → agent.
+- Runtime `.agents/logs/` (gitignored) provide backtrace from action → task → agent; sanitized samples sit in `samples/logs/`.
 - Sanitize checklist ensures tokens/base URLs are not leaked.
 
 ## Upgrade Path

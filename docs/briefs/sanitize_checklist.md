@@ -6,4 +6,4 @@
 - [ ] Evidence artefacts include `author`, `aa_id`, and `purpose` fields.
 - [ ] Images/diagrams originating from internal sources are redrawn or simplified SVGs.
 - [ ] `.agents/backlog/conflicts.yaml` updated whenever an exception occurs.
-- [ ] Gate state (G0, G1, G2…) recorded inside `.agents/logs/`.
+- [ ] Gate state (G0, G1, G2…) recorded inside runtime `.agents/logs/` (gitignored).

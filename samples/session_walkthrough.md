@@ -6,7 +6,7 @@ Customer request: "Show how MCP agents plan and log while keeping sensitive deta
 ## Demo Steps
 1. **Bootstrap** – run `./tools/bootstrap_orchestrator.sh --fast` and display the console output.
 2. **Reflection** – open `memory/templates/contract_template.md`, fill the summary (mask details).
-3. **Execution** – update the README (architecture only) and record evidence in `.agents/logs/`.
+3. **Execution** – update the README (architecture only) and record evidence in runtime `.agents/logs/` (gitignored).
 4. **Review** – complete `docs/briefs/sanitize_checklist.md` before pushing.
 
 ## Expected Outcomes
