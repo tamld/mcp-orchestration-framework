@@ -14,12 +14,12 @@ This playbook ensures structured, auditable brainstorming across AI agents (AAs)
 | Observer (optional stakeholder) | Read-only; raises feedback via issues/comments. |
 
 ## 3. Branch Workflow
-1. **Create topic branch** (Moderator):
+1. **Switch to shared SoT branch** (Moderator):
    ```bash
    git checkout main
    git pull origin main
    git checkout -b brainstorm/sot origin/brainstorm/sot || git checkout brainstorm/sot
-   git push -u origin HEAD
+   git pull --ff-only
    ```
 2. **Scaffold session** (Moderator):
    - Create `brainstorm/sot/<topic>/README.md` using `brainstorm/templates/session_readme_template.md`.

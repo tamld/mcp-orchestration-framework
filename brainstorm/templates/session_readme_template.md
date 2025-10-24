@@ -24,7 +24,25 @@
 ## Decisions / Next Steps
 - <item>
 
-## Retrospective Notes (fill after session)
+
+## Quick Checklist
+- [ ] sanitize run
+- [ ] pytest (if applicable)
+- [ ] idea added with front matter
+- [ ] contribution table updated
+- [ ] decision table refreshed
+
+## Moderator Notes
+-
+
+## What / So What / Now What
+| Stage | Notes |
+| --- | --- |
+| What |  |
+| So What |  |
+| Now What |  |
+
+## Retrospective Notes
 - Wins:
 - Risks:
 - Follow-up tasks:

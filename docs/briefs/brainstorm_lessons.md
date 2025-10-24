@@ -27,19 +27,9 @@
 | Sensitive content slipping into artefacts | Compliance risk | Sanitize script + moderator review + retrospective log when incident occurs. |
 
 ## Workflow Conventions Added
-- Each session README now includes **Moderator Notes** section (for oversight comments without changing AA content).
-- PR description template includes:
-  ```markdown
-  ## Checklist
-  - [ ] sanitize run
-  - [ ] pytest (if applicable)
-  - [ ] decision table updated
-  - [ ] retrospective drafted
-  ## Decisions
-  | Idea | Status | Notes |
-  | --- | --- | --- |
-  ```
-- After merge, create `brainstorm/<topic>/decisions.yaml` summarising key accepted items.
+- Each session README now includes a quick checklist, Moderator Notes, and "What / So What / Now What" framing.
+- PR description template includes reminder of the checklist and decision table; moderators only comment in dedicated section.
+- After merge, create `brainstorm/sot/<topic>/decisions.yaml` summarising key accepted items when needed for automation.
 - Use issue label `brainstorm-question` to track prompts outside the branch.
 
 ## Lessons Learned
