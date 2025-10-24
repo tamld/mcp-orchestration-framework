@@ -33,6 +33,10 @@
 - Use issue label `brainstorm-question` to track prompts outside the branch.
 
 ## Lessons Learned
+
+### Micro-Question Technique
+- Added: Use targeted questions to expose gaps (e.g., “Should brainstorm branch be merged?”) — led to clarity on SoT workflow and affirmed merging practice.
+  - Artefact: answer embedded in README/Playbook update, commit `37de53f`.
 ### Successes
 | Lesson | Artefact |
 | --- | --- |
