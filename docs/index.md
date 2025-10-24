@@ -6,3 +6,4 @@
 - [Value Story](briefs/value_story.md)
 - [Sanitize Checklist](briefs/sanitize_checklist.md)
 - [SSoT Governance](briefs/ssot_governance.md)
+- [Contribution Policy](briefs/contribution_policy.md)

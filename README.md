@@ -76,6 +76,7 @@ python tools/sanitize_manifest.py --dry-run
 - 🔄 `configs/providers.example.yaml` – sample provider/agent/task config.
 - 💻 `samples/api_workflow.md` – orchestration walkthrough feeding the SSoT.
 - 📁 `samples/templates/conflicts.example.yaml` – illustrative conflict log (keep real file local under `.agents/backlog/`).
+- 🛡️ `docs/briefs/contribution_policy.md` – contribution workflow, auto-merge rules, and Copilot review guidance.
 - 📜 `docs/briefs/project_charter.md` – vision, mission, strategy, success metrics, and 90-day plan.
 
 ## 🔭 Potential Applications
