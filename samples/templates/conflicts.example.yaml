@@ -1,0 +1,7 @@
+# Example conflict log (store locally in .agents/backlog/conflicts.yaml; do not commit the real file)
+items:
+  - id: DEV-EX-001
+    detected_at: 2025-10-24T16:30:00Z
+    description: "Requested to modify core policy beyond PoC scope"
+    resolution: "Deferred to MCP Global review"
+    status: pending

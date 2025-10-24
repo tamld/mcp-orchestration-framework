@@ -75,6 +75,7 @@ python tools/sanitize_manifest.py --dry-run
 - 🧱 `tech_fit.yaml` – architectural tech profile (redacted details).
 - 🔄 `configs/providers.example.yaml` – sample provider/agent/task config.
 - 💻 `samples/api_workflow.md` – orchestration walkthrough feeding the SSoT.
+- 📁 `samples/templates/conflicts.example.yaml` – illustrative conflict log (keep real file local under `.agents/backlog/`).
 
 ## 🔭 Potential Applications
 - **Multi-agent onboarding** – spin up coordinated teams using skill matrices.
