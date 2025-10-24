@@ -82,6 +82,20 @@ python tools/sanitize_manifest.py --dry-run
 - **Customer demonstrations** – showcase guardrails while mixing providers.
 - **Product runway** – replace PoC state store & adapters for domain-specific launches.
 
+## 🧩 Delivery Modality & Technology Choices
+- **Primary form** – Python library plus lightweight CLI, optimised for DevOps/AA automation without imposing a fixed UI.
+- **Contract-first inputs** – YAML workflows and JSONL evidence keep agents machine-friendly while humans consume Markdown briefs.
+- **Integration-ready** – skeleton prepared to expose FastAPI/GraphQL endpoints for trigger orchestration or SSoT queries with minimal refactor.
+- **Observability hooks** – structure ready for OpenTelemetry spans and structured logging so enterprise teams can plug into existing monitoring stacks.
+- **Policy enforcement** – events are compatible with modern policy-as-code engines (OPA, Cedar) for automated guardrail decisions.
+
+## 🔬 Emerging Enhancements Under Research
+- **Event-driven orchestration** using async task queues (e.g., Celery, Arq) so multiple agents react to SoT deltas in real time.
+- **Hybrid vector/relational memory** to promote lessons from STM → LTM with semantic search (pgvector, Milvus) while maintaining audit-friendly SQL snapshots.
+- **Automated eval harnesses** inspired by LangSmith/LangGraph to grade reflection quality, incident response, and provider accuracy.
+- **Guardrail automation** that fuses policy-as-code with LAW/META layers to pre-empt risky execution plans.
+- **Human-in-the-loop UX** experiments (Next.js dashboard or VSCode extension) once the CLI proves adoption with pilot customers.
+
 ## 🤝 Upgrade Journey
 1. **G0** – confirm scope & security (contract + checklist).
 2. **G1** – enable lint/tests & mandatory artefacts.
