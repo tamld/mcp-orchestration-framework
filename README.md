@@ -78,6 +78,7 @@ python tools/sanitize_manifest.py --dry-run
 - 📁 `samples/templates/conflicts.example.yaml` – illustrative conflict log (keep real file local under `.agents/backlog/`).
 - 🛡️ `docs/briefs/contribution_policy.md` – contribution workflow, auto-merge rules, and Copilot review guidance.
 - 🤝 `docs/briefs/brainstorm_playbook.md` – structured process for agent-led brainstorming sessions.
+- 🧠 `docs/briefs/brainstorm_lessons.md` – assumptions, mitigations, and Codex self-lessons for continuous improvement.
 - 📜 `docs/briefs/project_charter.md` – vision, mission, strategy, success metrics, and 90-day plan.
 
 ## 🔭 Potential Applications
