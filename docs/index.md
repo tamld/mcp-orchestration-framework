@@ -7,3 +7,4 @@
 - [Sanitize Checklist](briefs/sanitize_checklist.md)
 - [SSoT Governance](briefs/ssot_governance.md)
 - [Contribution Policy](briefs/contribution_policy.md)
+- [Brainstorm Collaboration Playbook](briefs/brainstorm_playbook.md)
