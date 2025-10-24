@@ -1,0 +1,31 @@
+<svg width="420" height="220" viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font: 700 18px 'Arial', sans-serif; fill: #0b5ed7; }
+    .label { font: 600 14px 'Arial', sans-serif; fill: #1b1f23; }
+    .note { font: 12px 'Arial', sans-serif; fill: #4b5563; }
+    .bubble { fill: #eef4ff; stroke: #0b5ed7; stroke-width: 2; rx: 14; }
+    .arrow { stroke: #0b5ed7; stroke-width: 2.2; marker-end: url(#arrowhead); fill: none; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0b5ed7" />
+    </marker>
+  </defs>
+  <text class="title" x="20" y="32">MCP PoC Value Loop</text>
+
+  <rect class="bubble" x="30" y="60" width="150" height="70" />
+  <text class="label" x="48" y="95">Khách hàng quan sát</text>
+  <text class="note" x="48" y="115">Demo dry-run, artefact mẫu</text>
+
+  <rect class="bubble" x="240" y="60" width="150" height="70" />
+  <text class="label" x="260" y="95">PoC MCP Control</text>
+  <text class="note" x="260" y="115">LAW-REFLECT-001, sanitize</text>
+
+  <rect class="bubble" x="135" y="150" width="150" height="60" />
+  <text class="label" x="158" y="185">Quyết định nâng cấp</text>
+  <text class="note" x="158" y="203">Gate G3 → repo private</text>
+
+  <line class="arrow" x1="180" y1="95" x2="240" y2="95" />
+  <line class="arrow" x1="315" y1="130" x2="210" y2="170" />
+  <line class="arrow" x1="210" y1="170" x2="120" y2="120" />
+</svg>

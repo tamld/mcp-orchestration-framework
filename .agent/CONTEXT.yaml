@@ -1,0 +1,28 @@
+repo_name: mcp-poc-operations
+workspace_root: ${WORKSPACE_ROOT}
+default_branch: main
+presentation:
+  locale: vi-VN
+  tone: concise
+  formats:
+    - markdown
+    - tables
+    - icons
+  summary_rule: "Bắt đầu bằng 1-2 dòng plain-text trước markdown."
+  icon_set:
+    info: "ℹ️"
+    warn: "⚠️"
+    success: "✅"
+    danger: "⛔"
+    idea: "💡"
+confidentiality:
+  exposure_level: "PoC-public"
+  notes:
+    - "Thay thế chi tiết kỹ thuật độc quyền bằng placeholder REDACTED."
+    - "Không đưa dữ liệu khách hàng."
+anchors:
+  mode: disabled
+  rationale: "Anchors thực được quản lý tại MCP-Server; PoC chạy dry-run."
+templates:
+  - path: ../memory/templates/
+    usage: "Tái sử dụng template MCP Global đã kiểm duyệt."

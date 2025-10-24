@@ -1,0 +1,1 @@
+{"timestamp":"2025-10-24T15:00:00Z","author":"MCP AI Ops","aa_id":"codex-gpt5","context":"PoC bootstrap","purpose":"Create repo skeleton and documentation","actions":["mkdir repo skeleton","generate README"],"evidence":["README.md","docs/design/overview.md"],"gate_state":"G0","deviation":null}

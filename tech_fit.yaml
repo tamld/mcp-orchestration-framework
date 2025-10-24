@@ -1,0 +1,22 @@
+project: MCP PoC Operations
+domain: enterprise-ai-ops
+primary_stack:
+  - python
+  - mkdocs
+  - yaml toolchain
+infrastructure:
+  constraints:
+    - "PoC chỉ chạy local, không connect production"
+    - "Không lưu credentials trong repo"
+security:
+  baseline:
+    - "Anchors disabled"
+    - "Sanitize bắt buộc trước public release"
+scaling:
+  plan:
+    - gate: G1
+      action: "Bật CI lint (ruff, markdownlint)"
+    - gate: G2
+      action: "Demo end-to-end cho khách hàng"
+    - gate: G3
+      action: "Tách repo private + triển khai hạ tầng thật"
