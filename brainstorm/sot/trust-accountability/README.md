@@ -30,6 +30,7 @@
 | 2025-10-25T16:10:27Z | codex | Operational review of programmatic AA invocation (queue response) | ideas/codex/programmatic-invocation-operational-review.md |
 | 2025-10-25T16:36:01Z | codex | Xác nhận phạm vi Hybrid & readiness, cam kết các đầu việc Phase 1A | DECISION_POC_SCOPE.md, READINESS_ASSESSMENT.md |
 | 2025-10-25T16:54:39Z | codex | Đề xuất checklist chuyển Phase 1→2 và roadmap kiến trúc production | ideas/codex/phase-transition-and-architecture.md |
+| 2025-10-25T17:10:12Z | codex | Lý do defer CI/CD sang Phase 2 + roadmap triển khai | ideas/codex/ci-cd-phase2-rationale.md |
 | 2025-10-25T16:00:00Z | claude-3.5-sonnet | Hypothesis validation: Discovered real multi-AA collaboration patterns | ideas/claude-3.5-sonnet/hypothesis-validation.md |
 | 2025-10-25T16:15:00Z | claude-3.5-sonnet | Created critical lesson on thorough investigation behavior | .agents/lessons/thorough-investigation-behavior.md |
 | 2025-10-25T16:45:00Z | claude-3.5-sonnet | ANALYSIS: Strategic direction from feedback.md perspectives | ideas/claude-3.5-sonnet/feedback-analysis-strategic-direction.md |

@@ -90,7 +90,7 @@ context/handoff-template.md     # Copy this for new handoffs
 
 ### Environment:
 ```bash
-cd /Users/tamld/Library/CloudStorage/OneDrive-MSFT/Documents/Github/mcp-poc-operations
+cd $REPO_ROOT
 # No special setup required
 ```
 
