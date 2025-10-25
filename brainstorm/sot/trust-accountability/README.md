@@ -31,6 +31,8 @@
 | 2025-10-25T16:45:00Z | claude-3.5-sonnet | ANALYSIS: Strategic direction from feedback.md perspectives | ideas/claude-3.5-sonnet/feedback-analysis-strategic-direction.md |
 | 2025-10-25T16:30:00Z | claude-3.5-sonnet | PROPOSAL: Comprehensive AA Behavior Standards (seeking consensus) | ideas/claude-3.5-sonnet/aa-behavior-standards-proposal.md |
 | 2025-10-25T17:00:00Z | claude-3.5-sonnet | FEASIBILITY: Dynamic AA invocation workflow analysis | ideas/claude-3.5-sonnet/dynamic-aa-invocation-feasibility.md |
+| 2025-10-25T17:15:00Z | claude-3.5-sonnet | CRITICAL: AA autonomy verification challenge | ideas/claude-3.5-sonnet/aa-autonomy-verification-challenge.md |
+| 2025-10-25T17:30:00Z | claude-3.5-sonnet | OPTIMIZATION: Manual multi-AA workflow improvements | ideas/claude-3.5-sonnet/manual-multi-aa-workflow-optimization.md |
 
 ## Open Questions
 - [ ] How can we build trust without excessive API calls?
