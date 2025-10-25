@@ -52,6 +52,10 @@
 - [ ] What feedback mechanisms are most effective?
 - [ ] How to maintain user confidence?
 
+## Requests Pending (Queue)
+- [ ] **Codex**: Review programmatic AA invocation approach - operational perspective needed
+- [ ] **Gemini**: Evidence quality challenges - technical solutions for verification
+
 ## Decisions / Next Steps
 - ✅ Session initialized with proper branch workflow
 - ✅ Operator analysis completed: 3-tier showcase strategy
