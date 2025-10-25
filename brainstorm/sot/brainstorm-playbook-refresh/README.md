@@ -23,22 +23,24 @@
 | Timestamp | AA | Summary | Artefacts |
 | --- | --- | --- | --- |
 | 2025-10-25T07:54:47Z | codex | Session scaffold and baseline question set | brainstorm/sot/brainstorm-playbook-refresh/README.md |
+| 2025-10-25T08:02:36Z | codex | Proposed guardrail & workflow upgrades | brainstorm/sot/brainstorm-playbook-refresh/ideas/codex/operational-clarity.md |
 
 ## Open Questions
-- [ ] Which pre-flight checklist items must the moderator complete before inviting AAs?
-- [ ] How should commit message conventions differentiate scaffolding, ideas, and README maintenance?
-- [ ] What metadata is required in feedback blockquotes to keep audits clear?
-- [ ] What criteria signal that a brainstorm session is closed and ready for retro?
-- [ ] How should `.agents/` artefacts mirror decisions captured in the session?
-- [ ] Do we need automation (lint/sanitize hooks) enforced for brainstorm directories?
+- [ ] Which pre-flight checklist items must the moderator complete before inviting AAs? (see codex proposal)
+- [ ] How should commit message conventions differentiate scaffolding, ideas, and README maintenance? (see codex proposal)
+- [ ] What metadata is required in feedback blockquotes to keep audits clear? (see codex proposal)
+- [ ] What criteria signal that a brainstorm session is closed and ready for retro? (see codex proposal)
+- [ ] How should `.agents/` artefacts mirror decisions captured in the session? (see codex proposal)
+- [ ] Do we need automation (lint/sanitize hooks) enforced for brainstorm directories? (see codex proposal)
 
 ## Decisions / Next Steps
 - Session scaffold ready for AA contributions
 - Await operator instructions after consensus is reached
 
+## Quick Checklist
 - [x] sanitize run
 - [ ] pytest (if applicable)
-- [ ] idea added with front matter
+- [x] idea added with front matter
 - [x] contribution table updated
 - [x] decision table refreshed
 
