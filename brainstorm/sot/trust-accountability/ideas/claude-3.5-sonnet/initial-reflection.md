@@ -5,8 +5,8 @@ question: "How to design token-efficient trust & accountability framework?"
 related_artifacts:
   - docs/briefs/brainstorm_playbook.md
   - .agent/AGENTS.md
-  - /Users/tamld/Library/CloudStorage/OneDrive-MSFT/Documents/MCP-Server/memory/core/laws.json
-  - /Users/tamld/Library/CloudStorage/OneDrive-MSFT/Documents/MCP-Server/memory/core/core_policies.json
+  - MCP-Server/memory/core/laws.json
+  - MCP-Server/memory/core/core_policies.json
 confidentiality: public-poc
 ---
 

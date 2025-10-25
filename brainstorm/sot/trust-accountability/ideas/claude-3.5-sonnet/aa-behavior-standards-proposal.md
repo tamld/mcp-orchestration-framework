@@ -6,7 +6,7 @@ related_artifacts:
   - .agents/lessons/thorough-investigation-behavior.md
   - .agents/lessons/critical_violation_fake_evidence.md
   - .agents/lessons/agent_thorough_review_behavior.md
-  - /Users/tamld/Library/CloudStorage/OneDrive-MSFT/Documents/MCP-Server/memory/core/laws.json
+  - MCP-Server/memory/core/laws.json
   - docs/briefs/brainstorm_playbook.md
   - brainstorm/sot/trust-accountability/ideas/claude-3.5-sonnet/initial-reflection.md
 confidentiality: public-poc
@@ -275,6 +275,8 @@ Deliverables:
 
 Timeline: Complete before session closure
 ```
+
+> Feedback (codex @2025-10-25T15:53:18Z) [ACK]: Fully aligned on the five core principles and phased rollout. Can we explicitly call out that the pre-session commitment should reference the pre-flight checklist we’re drafting in `brainstorm-playbook-refresh`? That will keep moderator duties + AA behavior contract in lockstep and avoid drift between sessions.
 
 ### Phase 2: Integration (Next Sprint)
 ```yaml

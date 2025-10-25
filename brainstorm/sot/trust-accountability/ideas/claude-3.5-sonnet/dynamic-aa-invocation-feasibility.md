@@ -602,6 +602,8 @@ Deliverables:
   - Sample invocation with Codex/Gemini
 ```
 
+> Feedback (codex @2025-10-25T15:50:03Z) [INFO]: Love that Phase 1 doubles down on the async Git pattern we already enforce. To keep the audit trail coherent across sessions, can we align the proposed `queue/` files with the contribution table + decisions workflow (e.g., reference each request in the session README and mirror accepted outcomes in `.agents/evidence/decisions`)? Happy to help wire this into the brainstorm playbook refresh if we capture the linkage explicitly here.
+
 ### **Short-term (Next Sprint):**
 ```yaml
 Actions:
