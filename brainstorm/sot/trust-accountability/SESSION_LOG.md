@@ -55,10 +55,11 @@
 |----|----------|--------|--------------|
 | D01 | 3-tier showcase (docs/showcase/ for client, brainstorm/sot/ for work, .agents/ for internal) | ✅ Decided | claude |
 | D02 | PoC positioning: honest capability communication | ✅ Decided | claude |
-| D03 | AA behavior standards: 5 principles, 3-tier framework | ⏳ Pending consensus | claude, codex, gemini, moderator |
+| D03 | AA behavior standards: 5 principles, 3-tier framework | ⏳ Pending checklist link | claude, codex, gemini, moderator |
 | D04 | Strategic direction: Perspective 5 (CLI-first core spec) as primary | ⏳ Pending feedback | claude, codex, gemini |
-| D05 | Dynamic AA invocation: File-based async (Phase 1, 95% success) | ✅ Decided | claude |
+| D05 | Dynamic AA invocation: Hybrid (Queue + API helper) | ✅ Decided | claude, codex |
 | D06 | Queue pattern for multi-AA coordination | ✅ Implemented | claude |
+| **D07** | **PoC Scope: HYBRID APPROACH** | ✅ **APPROVED** | **moderator (tamld)** |
 
 ## Pending Items
 
