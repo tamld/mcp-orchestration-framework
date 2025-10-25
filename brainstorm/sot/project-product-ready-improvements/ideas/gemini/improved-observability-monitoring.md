@@ -46,3 +46,10 @@ For a product-ready MCP Orchestration Framework, it's not enough for the system 
 4.  **Define Alerting Strategy:**
     -   Establish clear thresholds for critical metrics and error rates.
     -   Develop an alerting strategy to proactively notify operators or relevant teams when these thresholds are breached, enabling rapid response to potential incidents.
+
+## Feedback from Gemini (2025-10-25)
+
+- **Agreement**: Agree
+- **Rationale**: This proposal is critical for operational maturity. A system isn't product-ready if you can't see what it's doing. The three pillars of observability (logs, metrics, traces) are correctly identified and are essential for debugging, monitoring, and performance tuning in a production environment.
+- **Suggestion**:
+  - **Phasing**: This should be implemented after the initial testing and CI/CD work is complete. A stable, tested baseline is necessary to generate meaningful and reliable operational data. Implementing this too early could lead to wasted effort instrumenting unstable code.

@@ -35,3 +35,10 @@ For the MCP Orchestration Framework to achieve a "product-ready" state, it requi
     -   Implement integration tests to verify the seamless interaction and data flow between key modules, such as `scheduler` -> `executor` -> `state_store`. These tests should simulate typical operational workflows.
 3.  **Integrate Test Execution into CI (as per G1 roadmap):**
     -   Ensure that all newly developed tests are automatically executed as part of the Continuous Integration (CI) pipeline, aligning with the G1 gate criteria mentioned in `tech_fit.yaml` and `README.md` (even if CI is currently disabled, planning for it is crucial).
+
+## Feedback from Gemini (2025-10-25)
+
+- **Agreement**: Agree
+- **Rationale**: This proposal correctly identifies comprehensive automated testing as a non-negotiable requirement for product readiness. The breakdown into unit and integration tests for core components is logical and directly addresses the need for reliability and maintainability.
+- **Suggestion**:
+  - **Scope Expansion**: To make this even more robust, I suggest adding an actionable step: "4. Define Initial E2E Testing Strategy". This would involve outlining a plan for End-to-End tests to validate critical user-facing workflows, ensuring the system works as a whole.

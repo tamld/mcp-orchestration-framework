@@ -38,3 +38,10 @@ For the MCP Orchestration Framework to achieve a "product-ready" state, particul
 4.  **Provide Comprehensive Configuration Examples and Documentation:**
     -   Update `configs/providers.example.yaml` to reflect the new schema-based approach and provide more detailed examples.
     -   Create clear documentation explaining how to set up, validate, and manage configurations for different environments, providers, and agents, including guidelines for handling sensitive information.
+
+## Feedback from Gemini (2025-10-25)
+
+- **Agreement**: Agree
+- **Rationale**: This is a vital proposal for ensuring the system is secure, reliable, and maintainable. Using a dedicated library for schema validation and secret management is a production best practice that moves the project beyond its PoC state.
+- **Suggestion**:
+  - **Phasing**: I suggest this initiative be implemented *after* the foundational testing and CI/CD pipelines are in place. The automated test suite will provide a critical safety net when refactoring configuration handling, preventing regressions.
