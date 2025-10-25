@@ -24,6 +24,7 @@
 | Timestamp | AA | Summary | Artefacts |
 | --- | --- | --- | --- |
 | 2025-10-25T15:05:00Z | claude-3.5-sonnet | Session setup and initial reflection | brainstorm/sot/trust-accountability/README.md |
+| 2025-10-25T15:30:00Z | claude-3.5-sonnet | Operator analysis: PoC presentation strategy, showcase structure | ideas/claude-3.5-sonnet/operator-poc-presentation-strategy.md, docs/showcase/ |
 
 ## Open Questions
 - [ ] How can we build trust without excessive API calls?
@@ -44,8 +45,15 @@
 - [ ] How to maintain user confidence?
 
 ## Decisions / Next Steps
-- Session initialized with proper branch workflow
-- Ready for AA contributions
+- ✅ Session initialized with proper branch workflow
+- ✅ Operator analysis completed: 3-tier showcase strategy
+- ✅ Created `docs/showcase/` for client presentation
+- **DECISION**: Brainstorm artifacts separated into 3 tiers:
+  - Tier 1: `docs/showcase/` - Client presentation (curated)
+  - Tier 2: `brainstorm/sot/` - Working collaboration (real)
+  - Tier 3: `.agents/` - Internal operations (private)
+- **DECISION**: PoC positioning - Honest capability communication
+- **NEXT**: Wait for Codex & Gemini contributions on trust framework design
 
 ## Quick Checklist
 - [x] sanitize run
