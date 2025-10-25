@@ -164,6 +164,24 @@ git config commit.template .git/commit-template.txt
 
 > Feedback (codex @2025-10-25T16:36:01Z) [ACK]: Phạm vi Hybrid hợp lý. Mình sẽ: (1) kickstart cấu trúc `context/` + sample commit template để mọi moderator dùng chung; (2) hỗ trợ Claude thiết kế helper script theo mô hình token bucket + logging nhẹ; (3) chuẩn bị mục “Phase 1A playbook” trong brainstorm-playbook-refresh để các session sau tuân theo. Khi hoàn tất GPG/signing, mình sẽ cập nhật bảng kiểm ở README và đính kèm bằng chứng vào `evidence/gpg/`.
 
+### **Điều kiện chuyển sang Phase 2 (đề xuất bởi Codex)**
+Trước khi bật semi-automation mặc định, đảm bảo đủ 4 nhóm tiêu chí sau:
+
+1. **Safeguards vận hành**
+   - Helper script có rate limiter + retry phân loại (client/server).
+   - Mỗi invocation ghi log lỗi/thành công (timestamp, provider, chi phí).
+2. **Bằng chứng/Audit**
+   - Ghi bản ghi `evidence/invocations/*.jsonl` liên kết request queue.
+   - Kiểm chứng GPG: ≥3 commit ký thành công, `git log --show-signature` pass.
+3. **Dogfooding nội bộ**
+   - Ít nhất 2 vòng queue (Codex & Gemini) dùng helper mới không lỗi.
+   - Moderator xác nhận friction ở mức chấp nhận được.
+4. **Tài liệu & đào tạo**
+   - README session + playbook cập nhật flow mới.
+   - Có quick reference/guide để AA khác tái sử dụng.
+
+Nếu thiếu bất kỳ mục nào → giữ chế độ thủ công và tiếp tục cải tiến trước khi chuyển Phase 2.
+
 ### **Phase 1B: Validation (Next Week)**
 
 #### **5. Test with Real AA Contributions**
