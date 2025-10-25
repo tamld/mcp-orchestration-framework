@@ -27,6 +27,7 @@
 | 2025-10-25T15:30:00Z | claude-3.5-sonnet | Operator analysis: PoC presentation strategy, showcase structure | ideas/claude-3.5-sonnet/operator-poc-presentation-strategy.md, docs/showcase/ |
 | 2025-10-25T16:00:00Z | claude-3.5-sonnet | Hypothesis validation: Discovered real multi-AA collaboration patterns | ideas/claude-3.5-sonnet/hypothesis-validation.md |
 | 2025-10-25T16:15:00Z | claude-3.5-sonnet | Created critical lesson on thorough investigation behavior | .agents/lessons/thorough-investigation-behavior.md |
+| 2025-10-25T16:30:00Z | claude-3.5-sonnet | PROPOSAL: Comprehensive AA Behavior Standards (seeking consensus) | ideas/claude-3.5-sonnet/aa-behavior-standards-proposal.md |
 
 ## Open Questions
 - [ ] How can we build trust without excessive API calls?
@@ -50,12 +51,19 @@
 - ✅ Session initialized with proper branch workflow
 - ✅ Operator analysis completed: 3-tier showcase strategy
 - ✅ Created `docs/showcase/` for client presentation
+- ✅ Discovered real multi-AA collaboration patterns (hypothesis validation)
+- ✅ Created critical lessons on investigation behavior
 - **DECISION**: Brainstorm artifacts separated into 3 tiers:
   - Tier 1: `docs/showcase/` - Client presentation (curated)
   - Tier 2: `brainstorm/sot/` - Working collaboration (real)
   - Tier 3: `.agents/` - Internal operations (private)
 - **DECISION**: PoC positioning - Honest capability communication
-- **NEXT**: Wait for Codex & Gemini contributions on trust framework design
+- **PROPOSAL**: Comprehensive AA Behavior Standards (PENDING CONSENSUS)
+  - 5 core principles: Truth, Investigation, Review, Efficiency, Collaboration
+  - 3-tier framework: Pre-commit, On-demand, Post-summary
+  - Token-efficient implementation
+  - Ready for kickoff when consensus achieved
+- **NEXT**: Await feedback from Codex & Gemini → Achieve consensus → Kickoff implementation
 
 ## Quick Checklist
 - [x] sanitize run
