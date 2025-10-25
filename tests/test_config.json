@@ -1,0 +1,12 @@
+{
+  "smoke_test": {
+    "enabled": true,
+    "created_at": 1761376908.3303769,
+    "purpose": "Demonstrate evidence collection system",
+    "files_created": [
+      "tests/test_smoke.py",
+      "tests/test_config.json"
+    ],
+    "evidence_session": "IMPL-20251025-142148"
+  }
+}
