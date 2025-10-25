@@ -87,7 +87,7 @@ session: <session_name>
 
 | Request | To | From | Status | Response | Created | Completed |
 |---------|-----|------|--------|----------|---------|-----------|
-| request-to-codex-programmatic-invocation.md | codex | claude | pending | - | 2025-10-25T17:50:00Z | - |
+| request-to-codex-programmatic-invocation.md | codex | claude | completed | ideas/codex/programmatic-invocation-operational-review.md | 2025-10-25T17:50:00Z | 2025-10-25T16:10:27Z |
 | request-to-gemini-evidence-quality.md | gemini | claude | pending | - | 2025-10-25T17:50:00Z | - |
 
 ## Benefits of Queue Pattern
