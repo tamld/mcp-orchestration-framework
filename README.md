@@ -1,5 +1,12 @@
 # 🌐 MCP Orchestration Framework (PoC)
 
+![Status](https://img.shields.io/badge/status-PoC-orange)
+![License](https://img.shields.io/badge/license-view--only-lightgrey)
+![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
+![Protocol: MCP](https://img.shields.io/badge/Protocol-MCP-2563EB)
+![Framework: AAOS](https://img.shields.io/badge/Framework-AAOS-9333EA)
+![Multi-Agent](https://img.shields.io/badge/Multi--Agent-ready-blueviolet)
+
 > Customer-facing proof of concept that demonstrates a streamlined MCP-style control plane while keeping confidential implementation details private.
 
 ## ✨ Quick Highlights
