@@ -1,0 +1,31 @@
+name: MCP Orchestration PoC CI Gate
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Sanitize Manifest, Pytest & Spec Sync Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies & Run Checks
+        run: |
+          pip install -r requirements.txt
+          python tools/sanitize_manifest.py --dry-run
+          PYTHONPATH=src pytest
+          bash tools/ci_spec_code_sync.sh

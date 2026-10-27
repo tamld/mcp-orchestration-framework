@@ -8,6 +8,8 @@
 ![Multi-Agent](https://img.shields.io/badge/Multi--Agent-ready-blueviolet)
 
 > Customer-facing proof of concept that demonstrates a streamlined MCP-style control plane while keeping confidential implementation details private.
+>
+> **🚀 Production Successor (2026)**: Looking for the full Zero-Trust, Pure-Go multi-agent execution and capability harness that evolved from this PoC? See **[`tamld/g8s (The Gatekeepers)`](https://github.com/tamld/g8s)**.
 
 ## ✨ Quick Highlights
 - ✅ **Multi-task & multi-agent ready** – Python skeleton (`src/mcp_poc_framework`) registers several agents and routes work by skill.
